@@ -591,6 +591,13 @@ const App = () => {
     if (!idx.length) return;
     updateTentData({ ...tentData, poles: tentData.poles.map((p, i) => (idx.includes(i) ? { ...p, style, height: style === 'steel' ? snapSteelHeight(p.height) : p.height } : p)) });
   };
+  const handleSelectedPoleGuy = () => {
+    if (selections.length !== 1 || selections[0].type !== 'pole') return;
+    const idx = selections[0].id as number;
+    const poles = [...tentData.poles];
+    poles[idx] = { ...poles[idx], guy: poles[idx].guy === false };
+    updateTentData({ ...tentData, poles });
+  };
   const handleSelectedPoleHeight = (height: number) => {
     if (selections.length !== 1 || selections[0].type !== 'pole') return;
     const idx = selections[0].id as number;
@@ -1090,7 +1097,7 @@ const App = () => {
           {selections.some((s) => s.type !== 'model') && (
             <SelectionSection
               selections={selections} tentData={tentData}
-              onPoleHeight={handleSelectedPoleHeight} onPoleYaw={handleSelectedPoleYaw} onPoleFaceOut={handleSelectedPoleFaceOut} onPoleStyle={handleSelectedPoleStyle} guyLines={layers.guyLines} onToggleGuyLines={() => setLayers((p) => ({ ...p, guyLines: !p.guyLines }))} onDelete={handleDeleteSelections} onDropToGround={handleDropToGround}
+              onPoleHeight={handleSelectedPoleHeight} onPoleYaw={handleSelectedPoleYaw} onPoleFaceOut={handleSelectedPoleFaceOut} onPoleStyle={handleSelectedPoleStyle} onToggleGuyLines={handleSelectedPoleGuy} onDelete={handleDeleteSelections} onDropToGround={handleDropToGround}
             />
           )}
           {shapeStats.length > 0 && <TakeoffSection tentData={tentData} report={materialReport} shapes={shapeStats} onPickEdge={editShapeDirection} />}

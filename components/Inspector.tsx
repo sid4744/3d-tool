@@ -81,10 +81,9 @@ export const DepthSection = ({
 // ---------------------------------------------------------------- selection
 
 export const SelectionSection = ({
-  selections, tentData, onPoleHeight, onDelete, onDropToGround, onPoleYaw, onPoleFaceOut, onPoleStyle, guyLines, onToggleGuyLines,
+  selections, tentData, onPoleHeight, onDelete, onDropToGround, onPoleYaw, onPoleFaceOut, onPoleStyle, onToggleGuyLines,
 }: {
   onPoleStyle: (s: PoleStyle) => void;
-  guyLines: boolean;
   onToggleGuyLines: () => void;
   onPoleYaw: (deg: number) => void;
   onPoleFaceOut: () => void;
@@ -123,7 +122,7 @@ export const SelectionSection = ({
                 onChange={(e) => onPoleYaw(+e.target.value)} />
             </Field>
             <Btn size="sm" className="w-full" onClick={onPoleFaceOut}>Point away from the tent</Btn>
-            <Btn size="sm" className="w-full" onClick={onToggleGuyLines}>{guyLines ? 'Turn guy lines off' : 'Turn guy lines on'}</Btn>
+            {(tentData.poles[single.id as number]?.style ?? 'steel') === 'wood' && <Btn size="sm" className="w-full" onClick={onToggleGuyLines}>{tentData.poles[single.id as number]?.guy === false ? 'Turn this guy line on' : 'Turn this guy line off'}</Btn>}
           </>
         )}
         <div className="flex gap-2">

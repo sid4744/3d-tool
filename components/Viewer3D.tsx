@@ -1637,7 +1637,7 @@ const ViewerScene: React.FC<Viewer3DProps> = ({
                     </mesh>
                   )}
                 </group>
-                {wood && layers.guyLines && <GuyLine base={p.position} height={p.height} yaw={yaw} />}
+                {wood && layers.guyLines && p.guy !== false && <GuyLine base={p.position} height={p.height} yaw={yaw} />}
               </React.Fragment>
             );
           })}

@@ -10,7 +10,8 @@ export interface TentPole {
   position: Vector3;
   height: number;
   style?: PoleStyle;
-  yaw?: number; // radians about +Y: the way the pole leans (steel) / its guy line runs (wood)
+  yaw?: number;
+  guy?: boolean; // wooden poles: false hides this pole's guy line; // radians about +Y: the way the pole leans (steel) / its guy line runs (wood)
 }
 
 export interface FurnitureItem {
