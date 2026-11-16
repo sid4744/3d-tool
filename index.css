@@ -1,0 +1,85 @@
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 14 15 17;
+  --panel: 22 23 26;
+  --raised: 31 33 37;
+  --hover: 40 42 47;
+  --line: 44 46 52;
+  --text: 232 233 236;
+  --muted: 140 143 151;
+  --faint: 96 99 107;
+  --accent: 245 165 36;
+  --danger: 229 83 75;
+  --ok: 78 190 150;
+}
+
+/* Light theme: same roles, warm paper-grey neutrals; accent darkened to keep contrast on white. */
+:root[data-theme='light'] {
+  --bg: 236 236 232;
+  --panel: 250 250 248;
+  --raised: 255 255 255;
+  --hover: 238 238 234;
+  --line: 220 220 214;
+  --text: 28 29 33;
+  --muted: 98 101 109;
+  --faint: 146 149 156;
+  --accent: 205 112 0;
+  --danger: 205 52 44;
+  --ok: 16 146 106;
+  color-scheme: light;
+}
+:root[data-theme='dark'] { color-scheme: dark; }
+
+@layer base {
+  html, body, #root { height: 100%; }
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: rgb(var(--bg));
+    color: rgb(var(--text));
+    font-family: 'Geist Variable', system-ui, sans-serif;
+    font-size: 12.5px;
+    line-height: 18px;
+    -webkit-font-smoothing: antialiased;
+  }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 1.5px solid rgb(var(--accent)); outline-offset: 1px; }
+  ::selection { background: rgb(var(--accent) / 0.35); }
+
+  input[type='number'], input[type='text'], textarea, select {
+    background: rgb(var(--bg));
+    border: 1px solid rgb(var(--line));
+    border-radius: 5px;
+    color: rgb(var(--text));
+    padding: 4px 8px;
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+  }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: rgb(var(--accent) / 0.8); }
+  textarea { resize: none; }
+
+  input[type='range'] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 14px; background: transparent; cursor: pointer;
+  }
+  input[type='range']::-webkit-slider-runnable-track {
+    height: 2px; border-radius: 1px; background: rgb(var(--line));
+  }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 12px; height: 12px; margin-top: -5px;
+    border-radius: 50%; background: rgb(var(--text)); border: 0;
+    box-shadow: 0 0 0 3px rgb(var(--panel));
+  }
+  input[type='range']:hover::-webkit-slider-thumb { background: rgb(var(--accent)); }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--line)); border-radius: 4px; border: 2px solid rgb(var(--panel)); }
+  ::-webkit-scrollbar-thumb:hover { background: rgb(var(--faint)); }
+}

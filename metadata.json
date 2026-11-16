@@ -1,0 +1,5 @@
+{
+  "name": "QTool3D evaluation edition",
+  "description": "A browser-based 3D viewer and sketching tool for tent structures. Import CADMapper ZIP files, sketch outlines in real-scale, calculate fabric area, and export to DXF.",
+  "requestFramePermissions": []
+}
