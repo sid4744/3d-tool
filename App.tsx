@@ -931,7 +931,7 @@ const App = () => {
               <button className="h-7 px-2.5 rounded-md text-xs text-muted hover:text-ink hover:bg-hover" onClick={() => setPickingEdge(false)}>Skip (auto)</button>
             </div>
           )}
-          <div className="absolute top-3 right-3 z-20 flex flex-col items-end gap-2">
+          <div className="absolute top-3 right-3 bottom-3 z-20 flex flex-col items-end gap-2 overflow-y-auto overflow-x-hidden [&>*]:shrink-0 pointer-events-none [&>*]:pointer-events-auto" style={{ scrollbarWidth: 'thin' }}>
           <LayersSection
             layers={layers}
             onToggle={(k) => setLayers((p) => ({ ...p, [k]: !p[k] }))}
